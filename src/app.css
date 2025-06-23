@@ -1,3 +1,22 @@
+:root {
+  --bg: #1a1a1a;
+  --fg: #bfbfbf;
+  --link: #8ae234;
+  --link-hover: #aaffaa;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: 'Courier New', Courier, monospace;
+  text-transform: lowercase;
+  line-height: 1.5;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+
 .layout {
   display: grid;
   grid-template-columns: 300px 1fr 250px;
@@ -52,11 +71,12 @@
     grid-template-columns: 1fr;
   }
 
-  .sidebar, .episode-list {
-    position: relative;
-    width: 100%;
-    border: none;
-  }
+  .sidebar,
+  .episode-list {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
 
   .main-content {
     margin: 0;
