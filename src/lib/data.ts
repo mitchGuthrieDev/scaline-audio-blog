@@ -6,6 +6,8 @@ export interface Episode {
   description: string;
   audioUrl: string;
   length: string;
+  descriptionHtml?: string;
+  date?: string;
 }
 
 export const episodes: Episode[] = [

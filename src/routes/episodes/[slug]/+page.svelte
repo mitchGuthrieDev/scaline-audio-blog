@@ -1,44 +1,101 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import type { PageData } from './$types';
+
   export let data: PageData;
+  let audioEl: HTMLAudioElement;
+  let isPlaying = false;
+
+  // pull out number + title
+  const slugParts = data.episode.slug.split('-');
+  // assuming slug is "episode-74-ncw"
+  const epNum = slugParts[1];
+  const epTitle = data.episode.title;
+
+  function togglePlay() {
+    if (!audioEl) return;
+    if (isPlaying) {
+      audioEl.pause();
+    } else {
+      audioEl.play();
+    }
+  }
+
+  onMount(() => {
+    audioEl?.addEventListener('play',  () => (isPlaying = true));
+    audioEl?.addEventListener('pause', () => (isPlaying = false));
+  });
 </script>
 
 <section class="player">
-  <h2>
-    episode {data.episode.slug.replace('episode-', '')}: {data.episode.title}
+  <!-- Header -->
+  <h2 class="title">
+    Episode {epNum}:&nbsp;{epTitle}
   </h2>
 
-  <p class="description">{data.episode.description}</p>
+  <!-- Controls row -->
+  <div class="controls">
+    <button on:click={togglePlay} class="control play">
+      [{isPlaying ? 'pause' : 'play'}]
+    </button>
+    <span class="length">{data.episode.length}</span>
 
-  <audio
-    controls
-    src={data.episode.audioUrl}
-    preload="metadata"
-  ></audio>
+    <a
+      href={data.episode.audioUrl}
+      download
+      class="control source"
+    >
+      [source]
+    </a>
+  </div>
+
+  <!-- Hidden native audio element -->
+  <audio bind:this={audioEl} src={data.episode.audioUrl} preload="metadata" />
+
+  <!-- Description / Track list -->
+  <div class="description">
+    {@html data.episode.descriptionHtml}
+  </div>
 </section>
 
 <style>
   .player {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', monospace;
     color: var(--fg);
-    margin: 0 auto;
     max-width: 700px;
+    margin: 0 auto;
   }
-
-  .player h2 {
+  .title {
     margin: 0 0 1rem 0;
+    font-size: 2.5rem;
     text-transform: lowercase;
     font-weight: normal;
   }
-
-  .player .description {
-    margin: 0 0 1rem 0;
-    white-space: pre-wrap;
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
   }
-
-  .player audio {
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 2rem;
+  .control {
+    background: none;
+    border: none;
+    color: var(--link);
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: lowercase;
+  }
+  .control:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+  }
+  .length {
+    color: var(--fg);
+    font-size: 1rem;
+  }
+  .description {
+    border-top: 1px solid #333;
+    padding-top: 1rem;
+    white-space: pre-wrap;
   }
 </style>
