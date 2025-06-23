@@ -54,7 +54,7 @@
 
   <!-- Description / Track list -->
   <div class="description">
-    {@html data.episode.descriptionHtml}
+    {@html data.descriptionHtml}
   </div>
 </section>
 
