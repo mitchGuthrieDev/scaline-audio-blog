@@ -70,21 +70,29 @@ body {
 }
 
 @media (max-width: 900px) {
+  /* Turn off the 3-column grid entirely */
   .layout {
-    grid-template-columns: 1fr;
+    display: block;
   }
 
+  /* Let each section flow in the document order, full width */
   .sidebar,
+  .main-content,
   .episode-list {
-  background-color: var(--bg);
-  color: var(--fg);
-}
+    position: relative !important;  /* remove fixed */
+    width: 100% !important;          /* full width */
+    margin: 0;                       /* no offset margins */
+    border: none;                    /* drop side borders if you like */
+    padding: 1.5rem 1rem;            /* consistent vertical padding */
+  }
 
-
+  /* Tweak main content padding if needed */
   .main-content {
-    margin: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }
+
 
 .terminal a {
   color: var(--link);
