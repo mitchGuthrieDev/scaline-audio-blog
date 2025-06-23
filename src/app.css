@@ -75,6 +75,7 @@ body {
   overflow-y: auto;
 }
 
+/* 6. Episode list (right) */
 .episode-list ol {
   list-style-type: decimal;
   padding-left: 1.5rem;
@@ -82,15 +83,16 @@ body {
 }
 
 .episode-list li {
-  margin: 0 0 2rem 0;
-  font-style: normal;
+  margin: 0 0 1rem 0;    /* shrink from 2rem down to 1rem */
 }
 
+/* Italicize the episode text */
 .episode-list a {
   color: var(--link);
   text-decoration: none;
   display: inline-block;
   padding: 0.1rem 0;
+  font-style: italic;      /* add this line */
 }
 
 .episode-list a:hover {
@@ -99,11 +101,14 @@ body {
   text-decoration: none;
 }
 
+/* current item styling stays as-is (non-italic is fine) */
 .episode-list li.current a {
   background-color: var(--link);
   color: var(--bg);
   font-weight: bold;
+  font-style: normal;      /* ensure current stays upright if you like */
 }
+
 
 /*──────────────────────────────────────────────────────────────────────────────
    7. Terminal (sidebar) links & buttons 
