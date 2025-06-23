@@ -1,8 +1,7 @@
-<script>
-  import "../app.css";
+<script lang="ts">
+  import '../app.css';
   import Sidebar from '$lib/components/Sidebar.svelte';
-  import { episodes } from '$lib/data';
-  import { page } from '$app/stores';
+  import EpisodeList from '$lib/components/EpisodeList.svelte';
 </script>
 
 <div class="layout">
@@ -14,21 +13,7 @@
     <slot />
   </main>
 
-  <script lang="ts">
-  import { page } from '$app/stores';
-</script>
-
-<aside class="episode-list">
-  <ul>
-    {#each episodes as ep, i}
-      <li class={ep.slug === $page.params.slug ? 'current' : ''}>
-        <a href={`/episodes/${ep.slug}`}>
-          {i + 1}: {ep.title}
-        </a>
-      </li>
-    {/each}
-  </ul>
-</aside>
-
-
+  <aside class="episode-list">
+    <EpisodeList />
+  </aside>
 </div>
