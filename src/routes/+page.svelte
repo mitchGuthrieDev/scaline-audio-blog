@@ -1,13 +1,5 @@
-<script>
-  import { episodes } from '$lib/data';
-</script>
+<pre>
+welcome to music for programming
 
-<h1>music for programming</h1>
-
-<ul>
-  {#each episodes as ep}
-    <li>
-      <a href={`/episodes/${ep.slug}`}>{ep.title}</a>
-    </li>
-  {/each}
-</ul>
+select an episode from the list to begin.
+</pre>
