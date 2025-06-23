@@ -108,8 +108,8 @@ body {
 /*──────────────────────────────────────────────────────────────────────────────
    7. Terminal (sidebar) links & buttons 
 ──────────────────────────────────────────────────────────────────────────────*/
+/* Base for all sidebar links */
 .terminal .link {
-  color: var(--link);
   text-decoration: none;
   font-size: 0.9em;
   background: none;
@@ -119,10 +119,31 @@ body {
   cursor: pointer;
 }
 
+/* Hover style (same for all) */
 .terminal .link:hover {
-  color: var(--link-hover);
   text-decoration: underline;
 }
+
+/* Now the colors per class */
+.terminal .link.blue {
+  color: #5abfff; /* about/credits/rss.xml */
+}
+.terminal .link.orange {
+  color: #ffae57; /* patreon/podcasts.apple */
+}
+.terminal .link.magenta {
+  color: #ff55ff; /* folder.jpg/enterprise mode */
+}
+.terminal .link.green {
+  color: var(--link); /* invert/fullscreen (your green) */
+}
+
+/* Optional: change hover color if you want them lighter/darker */
+.terminal .link.blue:hover    { color: #7fd7ff; }
+.terminal .link.orange:hover  { color: #ffbf7f; }
+.terminal .link.magenta:hover { color: #ff77ff; }
+.terminal .link.green:hover   { color: var(--link-hover); }
+
 
 /*──────────────────────────────────────────────────────────────────────────────
    8. Mobile (stack into one column) 

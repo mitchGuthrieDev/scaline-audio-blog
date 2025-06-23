@@ -54,22 +54,31 @@ length: <span class="yellow">{episodes[currentIndex].length}</span>
 {/if}
 
 {#if prevEpisode}
-  <a href={`/episodes/${prevEpisode.slug}`} class="link">[ prev ]</a>
+  <a href={`/episodes/${prevEpisode.slug}`} class="link green">[ prev ]</a>
 {:else}
-  <span class="link">[ prev ]</span>
+  <span class="link green">[ prev ]</span>
 {/if}
 {#if nextEpisode}
-  <a href={`/episodes/${nextEpisode.slug}`} class="link">[ next ]</a>
+  <a href={`/episodes/${nextEpisode.slug}`} class="link green">[ next ]</a>
 {:else}
-  <span class="link">[ next ]</span>
+  <span class="link green">[ next ]</span>
 {/if}
 
 ---------------------
-<a href="/"                              class="link">[ home ]</a>
-<a href="/feed.xml"                      class="link">[ rss ]</a>
-<a href="/credits"                       class="link">[ credits ]</a>
-<a href="https://musicforprogramming.bandcamp.com"
-   class="link" target="_blank" rel="noopener">[ bandcamp ]</a>
-<button class="link" on:click={toggleTheme}>[ invert ]</button>
-<button class="link" on:click={toggleFullscreen}>[ fullscreen ]</button>
+<!-- blue links -->
+<a href="/"               class="link blue">[ about ]</a>
+<a href="/credits"        class="link blue">[ credits ]</a>
+<a href="/feed.xml"       class="link blue">[ rss.xml ]</a>
+
+<!-- orange links -->
+<a href="https://patreon.com/..."       class="link orange" target="_blank" rel="noopener">[ patreon ]</a>
+<a href="https://podcasts.apple.com/..." class="link orange" target="_blank" rel="noopener">[ podcasts.apple ]</a>
+
+<!-- magenta links -->
+<a href="/folder.jpg"      class="link magenta">[ folder.jpg ]</a>
+<a href="/enterprise-mode" class="link magenta">[ enterprise mode ]</a>
+
+<!-- green buttons -->
+<button class="link green" on:click={toggleTheme}>[ invert ]</button>
+<button class="link green" on:click={toggleFullscreen}>[ fullscreen ]</button>
 </pre>
