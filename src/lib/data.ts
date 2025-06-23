@@ -4,14 +4,16 @@ export const episodes = [
     title: "episode 1",
     description: "music for programming episode 1",
     audioUrl: "/audio/episode1.mp3",
-    length: "1:02:45"
+    length: "1:02:45",
+    date: '2024-06-01T12:00:00Z'
   },
   {
     slug: "episode-2",
     title: "episode 2",
     description: "music for programming episode 2",
     audioUrl: "/audio/episode2.mp3",
-    length: "1:04:00"
+    length: "1:04:00",
+    date: '2024-06-02T12:00:00Z'
   }
 ];
 export const images = [
