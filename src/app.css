@@ -166,27 +166,40 @@ body {
   font-weight: normal;
 }
 
+/* ensure buttons & links share exact dimensions */
 .player .controls {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1.5rem;
 }
 
 .player .control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* same padding for both button & link */
+  padding: 0.25rem 0.75rem;
+  min-width: 5rem;          /* enforce equal width */
   background: none;
   border: none;
-  color: var(--link);
-  cursor: pointer;
   font-family: inherit;
   text-transform: lowercase;
-  text-decoration: none;
+  cursor: pointer;
 }
 
 .player .control:hover {
   color: var(--link-hover);
   text-decoration: underline;
 }
+
+/* file-size styling */
+.player .filesize {
+  color: var(--fg);
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
+  font-style: normal;
+}
+
 
 .player .length {
   color: var(--fg);

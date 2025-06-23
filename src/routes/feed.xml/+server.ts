@@ -8,7 +8,6 @@ export const GET: RequestHandler = async () => {
       <title>${e.title}</title>
       <link>https://your-domain.com/episodes/${e.slug}</link>
       <guid>https://your-domain.com/episodes/${e.slug}</guid>
-      <pubDate>${new Date(e.date).toUTCString()}</pubDate>
       <enclosure url="https://your-domain.com${e.audioUrl}" length="${e.length}" type="audio/mpeg"/>
     </item>
   `).join('');

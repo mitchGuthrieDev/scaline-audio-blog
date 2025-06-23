@@ -35,19 +35,21 @@
 
   <!-- Controls row -->
   <div class="controls">
-    <button on:click={togglePlay} class="control play">
-      [{isPlaying ? 'pause' : 'play'}]
-    </button>
-    <span class="length">{data.episode.length}</span>
+  <button class="control" on:click={togglePlay}>
+    [{isPlaying ? 'pause' : 'play'}]
+  </button>
 
-    <a
-      href={data.episode.audioUrl}
-      download
-      class="control source"
-    >
-      [source]
-    </a>
-  </div>
+  <span class="length">{data.episode.length}</span>
+
+  <a href={data.episode.audioUrl}
+     download
+     class="control">
+    [source]
+  </a>
+  <!-- new file-size text -->
+  <span class="filesize">({data.episode.fileSize})</span>
+</div>
+
 
   <!-- Hidden native audio element -->
   <audio bind:this={audioEl} src={data.episode.audioUrl} preload="metadata" />

@@ -61,7 +61,7 @@ async function main() {
     }
 
     const slug = mapping[filename];               // YOUR custom slug
-    const title = filename                          // human title (you can change as needed)
+    const title = filename                          // human title
       .replace(/\.mp3$/, '')
       .replace(/-/g, ' ')
       .replace(/\b\w/g, c => c.toUpperCase());
@@ -89,16 +89,27 @@ async function main() {
     parts.push(String(s).padStart(2,'0'));
     const length = parts.join(':');
 
-    episodes.push({ slug, title, description: '', audioUrl, length });
+    // extract and format file size
+    const sizeBytes = obj.Size || buffer.length;
+    const units = ['B','KB','MB','GB'];
+    let size = sizeBytes;
+    let unit = units.shift();
+    while (size > 1024 && units.length) {
+      size /= 1024;
+      unit = units.shift();
+    }
+    const fileSize = `${size.toFixed(1)} ${unit}`;
+
+    episodes.push({ slug, title, description: '', audioUrl, length, fileSize });
   }
 
   // persist any new mappings
   await saveMapping(mapping);
 
-  // emit data.ts
+  // emit data.ts with updated Episode interface
   const out = `// GENERATED — do not edit by hand\n\n`
     + `export interface Episode {\n`
-    + `  slug: string;\n  title: string;\n  description: string;\n  audioUrl: string;\n  length: string;\n}\n\n`
+    + `  slug: string;\n  title: string;\n  description: string;\n  audioUrl: string;\n  length: string;\n  fileSize: string;\n}\n\n`
     + `export const episodes: Episode[] = ${JSON.stringify(episodes, null, 2)};\n`;
 
   await writeFile(OUTPUT_FILE, out, 'utf8');
