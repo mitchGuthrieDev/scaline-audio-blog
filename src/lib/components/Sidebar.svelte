@@ -4,17 +4,17 @@
   import { derived } from 'svelte/store';
   import { onDestroy } from 'svelte';
 
-  // Pull out just the “XX” prefix from slugs like "03 - Deep Mix…"
+  // Extract numeric prefix for sorting
   function numPrefix(slug: string) {
     return Number.parseInt(slug.split(' - ')[0], 10) || 0;
   }
 
-  // A sorted copy of episodes by that numeric prefix
+  // Sorted episodes array
   const sorted = [...episodes].sort(
     (a, b) => numPrefix(a.slug) - numPrefix(b.slug)
   );
 
-  // Track current slug from the URL
+  // Current slug from URL
   const currentSlug = derived(page, $page => $page.params.slug || null);
 
   let currentIndex = -1;
@@ -22,15 +22,11 @@
     currentIndex = sorted.findIndex(e => e.slug === slug);
   });
 
-  // Prev/next based on sorted order
-  $: prevEpisode = currentIndex > 0
-    ? sorted[currentIndex - 1]
-    : null;
-  $: nextEpisode = currentIndex < sorted.length - 1
-    ? sorted[currentIndex + 1]
-    : null;
+  // Prev / Next
+  $: prevEpisode = currentIndex > 0 ? sorted[currentIndex - 1] : null;
+  $: nextEpisode = currentIndex < sorted.length - 1 ? sorted[currentIndex + 1] : null;
 
-  // loading dots animation (unchanged)
+  // loading dots animation
   let dots = '';
   const cycle = ['.', '..', '...'];
   let i = 0;
@@ -39,7 +35,7 @@
   }, 500);
   onDestroy(() => clearInterval(interval));
 
-  // theme & fullscreen toggles (unchanged)
+  // theme & fullscreen toggles
   function toggleTheme() {
     const html = document.documentElement;
     html.dataset.theme = html.dataset.theme === 'light' ? 'dark' : 'light';
@@ -67,16 +63,22 @@ length: <span class="yellow">{sorted[currentIndex].length}</span>
 {/if}
 
 {#if prevEpisode}
-  <a href={`/episodes/${prevEpisode.slug}`} class="link green">[ prev ]</a>
+  <a href={`/episodes/${prevEpisode.slug}`} class="link">[ prev ]</a>
 {:else}
-  <span class="link green">[ prev ]</span>
+  <span class="link">[ prev ]</span>
 {/if}
 {#if nextEpisode}
-  <a href={`/episodes/${nextEpisode.slug}`} class="link green">[ next ]</a>
+  <a href={`/episodes/${nextEpisode.slug}`} class="link">[ next ]</a>
 {:else}
-  <span class="link green">[ next ]</span>
+  <span class="link">[ next ]</span>
 {/if}
 
 ---------------------
-<!-- other nav links unchanged -->
+<a href="/" class="link">[ home ]</a>
+<a href="/feed.xml" class="link">[ rss ]</a>
+<a href="/credits" class="link">[ credits ]</a>
+<a href="https://musicforprogramming.bandcamp.com" class="link" target="_blank" rel="noopener">[ bandcamp ]</a>
+<a href="https://epks.scalineaudio.net/metaprose-epk-2025.pdf" class="link" target="_blank" rel="noopener">[ epk | media kit ]</a>
+<button class="link" on:click={toggleTheme}>[ invert ]</button>
+<button class="link" on:click={toggleFullscreen}>[ fullscreen ]</button>
 </pre>
