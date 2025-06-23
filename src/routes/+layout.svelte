@@ -19,15 +19,15 @@
 </script>
 
 <aside class="episode-list">
-  <ol>
+  <ul>
     {#each episodes as ep, i}
       <li class={ep.slug === $page.params.slug ? 'current' : ''}>
         <a href={`/episodes/${ep.slug}`}>
-          {i + 1}. {ep.title}
+          {i + 1}: {ep.title}
         </a>
       </li>
     {/each}
-  </ol>
+  </ul>
 </aside>
 
 
