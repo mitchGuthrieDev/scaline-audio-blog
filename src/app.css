@@ -123,3 +123,32 @@ body {
   color: var(--link-hover);
   text-decoration: underline;
 }
+
+.episode-list ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;    /* align numbers nicely */
+  margin: 0;               /* reset default */
+}
+
+.episode-list li {
+  font-style: italic;      /* italicize titles */
+  font-family: 'Courier New', Courier, monospace;
+  color: var(--fg);
+  margin: 0 0 2rem 0;      /* add one full blank line below each */
+}
+
+.episode-list a {
+  color: var(--fg);        /* same grey for links */
+  text-decoration: none;   /* no underline by default */
+}
+
+.episode-list a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.episode-list li.current a {
+  color: var(--link);
+  font-style: normal;  /* real site drops italic on the playing item */
+}
+
