@@ -1,4 +1,4 @@
-// src/lib/data.ts
+// GENERATED — do not edit by hand
 
 export interface Episode {
   slug: string;
@@ -6,26 +6,21 @@ export interface Episode {
   description: string;
   audioUrl: string;
   length: string;
-  date: string;
-  // ...
 }
 
 export const episodes: Episode[] = [
   {
-    slug: 'episode-1',
-    title: 'The Beginning',
-    description: '…',
-    audioUrl: 'https://stream.scalineaudio.net/01%20-%20Antidance%20Theory%20%5BMetaprose%5D.mp3',
-    length: '1:02:45',
-    date: "2024-06-01T12:00:00Z"
+    "slug": "01 - Antidance Theory [Metaprose]",
+    "title": "01   Antidance Theory [Metaprose]",
+    "description": "",
+    "audioUrl": "https://stream.scalineaudio.net/01%20-%20Antidance%20Theory%20%5BMetaprose%5D.mp3",
+    "length": "23:16"
   },
   {
-    slug: 'episode-2',
-    title: 'Further Explorations',
-    description: '…',
-    audioUrl: 'https://stream.scalineaudio.net/02%20-%20Pillars%20and%20Color%20%5BMetaprose%5D.mp3',
-    length: '1:04:00',
-    date: "2024-06-01T12:00:00Z"
-  },
-  // …and so on
+    "slug": "02 - Pillars and Color [Metaprose]",
+    "title": "02   Pillars And Color [Metaprose]",
+    "description": "",
+    "audioUrl": "https://stream.scalineaudio.net/02%20-%20Pillars%20and%20Color%20%5BMetaprose%5D.mp3",
+    "length": "29:37"
+  }
 ];

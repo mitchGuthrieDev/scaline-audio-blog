@@ -4,8 +4,9 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
+    "prebuild": "dotenv -e .env -- node scripts/generateEpisodes.cjs",
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "npm run prebuild && vite build",
 		"preview": "npm run build && wrangler pages dev",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -14,15 +15,19 @@
 		"cf-typegen": "wrangler types src/worker-configuration.d.ts"
 	},
 	"devDependencies": {
+		"@aws-sdk/client-s3": "^3.835.0",
 		"@fontsource/fira-mono": "^5.0.0",
 		"@neoconfetti/svelte": "^2.0.0",
 		"@sveltejs/adapter-auto": "^6.0.0",
 		"@sveltejs/adapter-cloudflare": "^7.0.4",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"dotenv-cli": "^8.0.0",
+		"music-metadata": "^11.3.0",
 		"svelte": "^5.25.0",
 		"svelte-check": "^4.0.0",
 		"typescript": "^5.0.0",
+		"undici": "^7.10.0",
 		"vite": "^6.2.6",
 		"wrangler": "^4.20.5"
 	}
