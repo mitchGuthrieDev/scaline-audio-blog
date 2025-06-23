@@ -2,28 +2,40 @@
   import { episodes } from '$lib/data';
   import { page } from '$app/stores';
   import { derived } from 'svelte/store';
+  import { onDestroy } from 'svelte';
 
-  // figure out which episode is current
+  // episode navigation
   const currentSlug = derived(page, $page => $page.params.slug || null);
   let currentIndex = -1;
   $: currentSlug.subscribe(slug => {
     currentIndex = episodes.findIndex(e => e.slug === slug);
   });
-
   $: prevEpisode = episodes[currentIndex - 1];
   $: nextEpisode = episodes[currentIndex + 1];
 
-  // animated “loading”
+  // animated “loading...”
   let dots = '';
   const cycle = ['.', '..', '...'];
   let i = 0;
   const interval = setInterval(() => {
     dots = cycle[i++ % cycle.length];
   }, 500);
-
-  // cleanup when component is destroyed
-  import { onDestroy } from 'svelte';
   onDestroy(() => clearInterval(interval));
+
+  // theme toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.dataset.theme = html.dataset.theme === 'light' ? 'dark' : 'light';
+  }
+
+  // fullscreen toggle
+  async function toggleFullscreen() {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else {
+      await document.documentElement.requestFullscreen();
+    }
+  }
 </script>
 
 <pre class="terminal">
@@ -47,8 +59,10 @@ length: <span class="yellow">{episodes[currentIndex].length}</span>
 {/if}
 
 ---------------------
-<!-- extra nav links -->
 <a href="/" class="link">[ home ]</a>
 <a href="/feed.xml" class="link">[ rss ]</a>
 <a href="/credits" class="link">[ credits ]</a>
+<a href="https://musicforprogramming.bandcamp.com" class="link" target="_blank" rel="noopener">[ bandcamp ]</a>
+<button class="link" on:click={toggleTheme}>[ invert ]</button>
+<button class="link" on:click={toggleFullscreen}>[ fullscreen ]</button>
 </pre>
