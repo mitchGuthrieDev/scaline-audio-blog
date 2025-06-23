@@ -1,56 +1,11 @@
-/* src/app.css */
-:root {
-  --bg: #1a1a1a;
-  --fg: #eaeaea;
-  --link: #8ae234;
-  --link-hover: #aaffaa;
-  font-size: 16px;
-}
-
-body {
-  margin: 0;
-  padding: 2rem;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: var(--bg);
-  color: var(--fg);
-  line-height: 1.6;
-  text-transform: lowercase;
-}
-
-a {
-  color: var(--link);
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--link-hover);
-  text-decoration: underline;
-}
-
-h1, h2, p, li {
-  margin: 0 0 1rem 0;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-audio {
-  margin-top: 1rem;
-  width: 100%;
-  max-width: 600px;
-}
-
-.page {
-  display: flex;
-  flex-direction: row;
+.layout {
+  display: grid;
+  grid-template-columns: 300px 1fr 250px;
   min-height: 100vh;
   font-family: 'Courier New', Courier, monospace;
 }
 
 .sidebar {
-  width: 300px;
   background-color: #111;
   color: #aaa;
   padding: 1rem;
@@ -58,51 +13,52 @@ audio {
   left: 0;
   top: 0;
   bottom: 0;
-  overflow-y: auto;
+  width: 300px;
   border-right: 1px solid #333;
+  overflow-y: auto;
 }
 
-.content {
+.main-content {
   margin-left: 300px;
   padding: 2rem;
-  flex: 1;
 }
 
-.terminal {
-  white-space: pre-wrap;
+.episode-list {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  padding: 1rem;
+  background-color: #111;
   color: #aaa;
-  line-height: 1.4;
+  border-left: 1px solid #333;
+  overflow-y: auto;
 }
 
-.terminal .green { color: #4f4; }
-.terminal .red { color: #f66; }
-.terminal .yellow { color: #ff6; }
-.terminal .blue { color: #66f; }
-
-.loading::after {
-  content: '.';
-  animation: dots 1s steps(3, end) infinite;
+.episode-list a {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #8ae234;
+  text-decoration: none;
 }
 
-@keyframes dots {
-  0%   { content: '.'; }
-  33%  { content: '..'; }
-  66%  { content: '...'; }
-  100% { content: '.'; }
+.episode-list a:hover {
+  color: #aaffaa;
 }
 
-@media (max-width: 768px) {
-  .sidebar {
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar, .episode-list {
     position: relative;
     width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #333;
+    border: none;
   }
 
-  .content {
-    margin-left: 0;
-    padding: 1rem;
+  .main-content {
+    margin: 0;
   }
 }
-
-
