@@ -108,10 +108,10 @@ body {
 /*──────────────────────────────────────────────────────────────────────────────
    7. Terminal (sidebar) links & buttons 
 ──────────────────────────────────────────────────────────────────────────────*/
-.terminal a,
-.terminal button.link {
+.terminal .link {
   color: var(--link);
   text-decoration: none;
+  font-size: 0.9em;
   background: none;
   border: none;
   padding: 0;
@@ -119,14 +119,9 @@ body {
   cursor: pointer;
 }
 
-.terminal a:hover,
-.terminal button.link:hover {
+.terminal .link:hover {
   color: var(--link-hover);
   text-decoration: underline;
-}
-
-.terminal .link {
-  font-size: 0.9em;
 }
 
 /*──────────────────────────────────────────────────────────────────────────────
