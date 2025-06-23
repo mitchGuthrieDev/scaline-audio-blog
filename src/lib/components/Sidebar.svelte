@@ -75,8 +75,11 @@ length: <span class="yellow">{episodes[currentIndex].length}</span>
 <a href="https://podcasts.apple.com/..." class="link orange" target="_blank" rel="noopener">[ podcasts.apple ]</a>
 
 <!-- magenta links -->
-<a href="/folder.jpg"      class="link magenta">[ folder.jpg ]</a>
-<a href="/enterprise-mode" class="link magenta">[ enterprise mode ]</a>
+<a href="https://epks.scalineaudio.net/metaprose-epk-2025.pdf"
+   class="link magenta"
+   target="_blank"
+   rel="noopener">[ epk | media kit ]</a>
+<a href="/about" class="link magenta">[ about ]</a>
 
 <!-- green buttons -->
 <button class="link green" on:click={toggleTheme}>[ invert ]</button>
