@@ -3,11 +3,11 @@
 </script>
 
 <h1>music for programming</h1>
+
 <ul>
-  {#each episodes as episode}
+  {#each episodes as ep}
     <li>
-      <a href={`/episodes/${episode.slug}`}>{episode.title}</a>
-      <p>{episode.description}</p>
+      <a href={`/episodes/${ep.slug}`}>{ep.title}</a>
     </li>
   {/each}
 </ul>

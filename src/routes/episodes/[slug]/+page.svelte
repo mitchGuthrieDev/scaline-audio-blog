@@ -6,5 +6,7 @@
 </script>
 
 <h2>{episode?.title}</h2>
+
 <p>{episode?.description}</p>
+
 <audio controls src={episode?.audioUrl}></audio>
